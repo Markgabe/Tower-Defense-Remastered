@@ -1,32 +1,43 @@
 from PPlay.gameimage import GameImage
 from Components.Button import *
-from config import *
+from config import GAME_WIDTH
 
 #-------------MENU--------------#
 class MenuGame:
     def __init__(self):
         self.bgmenu = GameImage("Images/bgmenutd.png")
-        self.buttonPlay = TextButton("Play", (200,200,200), GAME_WIDTH/2, 400, True, False)
-        self.buttonOptions = TextButton("Options", (200,200,200), GAME_WIDTH/2, 440, True, False)
-        self.buttonExit = TextButton("Exit", (200,200,200), GAME_WIDTH/2, 480, True, False)
+        self.buttons = [TextButton("Play", (200,200,200), GAME_WIDTH/2, 400, True, False),
+                        TextButton("Options", (200,200,200), GAME_WIDTH/2, 440, True, False),
+                        TextButton("Exit", (200,200,200), GAME_WIDTH/2, 480, True, False)]
 
     def start(self, window):
         self.draw(window)
-        self.update(window)
         window.set_title("Menu")
-        window.update()
 
     def draw(self, window):
         self.bgmenu.draw()
-        self.buttonPlay.draw(window)
-        self.buttonOptions.draw(window)
-        self.buttonExit.draw(window)
+        for button in self.buttons:
+            button.draw(window)
+        window.update()
 
-    def update(self, window):
-        if self.buttonExit.clicked():
-            RUNNING = False
-            window.update()
+    def update(self, run, menu, options):
+        if (self.getButtonClicked(2)):
+            run = False
+            menu = False
+        elif (self.getButtonClicked(1)):
+            menu = False
+            options = True
 
-        if self.buttonOptions.clicked():
-            OPTIONS_STATE = True
-            window.update()
+    def getButtonClicked(self, button):
+        # 0 - Play | 1 - Options | 2 - Exit
+        return self.buttons[button].clicked()
+
+    def whichIsClicked(self):
+        if self.buttons[0].clicked():
+            return "play"
+        elif self.buttons[1].clicked():
+            return "options"
+        elif self.buttons[2].clicked():
+            return "exit"
+        else:
+            return "none"

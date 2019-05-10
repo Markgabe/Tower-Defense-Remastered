@@ -1,2 +1,2 @@
-TD.py
+python TD.py
 pause

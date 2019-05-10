@@ -11,11 +11,11 @@ res = config[0].split()
 # SETS CONSTANTS _______________________________________________________
 GAME_WIDTH = int(res[1])
 GAME_HEIGHT = int(res[2])
-MENU_STATE = True
-OPTIONS_STATE = False
-RUNNING = True
 CLOCK = pygame.time.Clock()
 
+OPTIONS_STATE = False
+RUNNING = True
+MENU_STATE = True
 
 # INITIALIZES WINDOW ___________________________________________________
 window = Window(GAME_WIDTH, GAME_HEIGHT)

@@ -19,7 +19,7 @@ def load_image(name, colorkey=None, alpha=False):
             colorkey = image.get_at((0,0))
         image.set_colorkey(colorkey, RLEACCEL)
     return image, image.get_rect()
-        
+
 """GameImage is the base class to deal with images"""
 class GameImage(gameobject.GameObject):
     """
@@ -29,18 +29,18 @@ class GameImage(gameobject.GameObject):
     def __init__(self, image_file):
         # Parent constructor must be called first
         gameobject.GameObject.__init__(self)
-        
+
         # Loads image from the source, converts to fast-blitting format
         self.image = pygame.image.load(image_file).convert_alpha()
         # Gets the image pygame.Rect
         self.rect = self.image.get_rect()
-        
+
         # Size
         self.width = self.rect.width
         self.height = self.rect.height
 
-        
-        
+
+
 
     """Draws the image on the screen"""
     def draw(self):
