@@ -4,10 +4,10 @@ class TextButton:
     font = "Candara"
     x = 0
     y = 0
-    fontSize = 30
-    def __init__(self, text, color, x, y, aligned_x="false", aligned_y="false"):
+    def __init__(self, text, color, x, y, aligned_x="false", aligned_y="false", size = 30):
         self.text = text
         self.color = color
+        self.fontSize = size
         if aligned_x:
             self.x = x - self.get_size()[0]/2
         else:

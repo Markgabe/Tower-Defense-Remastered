@@ -1,14 +1,15 @@
 from PPlay.gameimage import GameImage
 from Components.Button import *
-from config import GAME_WIDTH
+from config import GAME_WIDTH, GAME_HEIGHT
 
 #-------------MENU--------------#
 class MenuGame:
-    def __init__(self):
-        self.bgmenu = GameImage("Images/bgmenutd.png")
-        self.buttons = [TextButton("Play", (200,200,200), GAME_WIDTH/2, 400, True, False),
-                        TextButton("Options", (200,200,200), GAME_WIDTH/2, 440, True, False),
-                        TextButton("Exit", (200,200,200), GAME_WIDTH/2, 480, True, False)]
+    def __init__(self, window):
+        self.bgmenu = GameImage("Images/bgmenutdorig.jpg")
+        self.bgmenu.resize(window.width, window.height)
+        self.buttons = [TextButton("Play", (200,200,200), window.width/2, int(window.height*(0.65)), True, False, 40),
+                        TextButton("Options", (200,200,200), window.width/2, int(window.height*(0.65)) + 50, True, False, 40),
+                        TextButton("Exit", (200,200,200), window.width/2, int(window.height*(0.65)) + 100, True, False, 40)]
 
     def start(self, window):
         self.draw(window)

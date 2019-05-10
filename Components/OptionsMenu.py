@@ -1,8 +1,9 @@
 from PPlay.gameimage import GameImage
 
 class OptionsScreen:
-    def __init__(self):
-        self.bg = GameImage("Images/bgmenutd.png")
+    def __init__(self, window):
+        self.bg = GameImage("Images/bgmenutdorig.jpg")
+        self.bg.resize(window.width, window.height)
 
     def start(self, window):
         self.draw(window)

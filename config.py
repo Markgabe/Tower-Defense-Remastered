@@ -17,6 +17,9 @@ OPTIONS_STATE = False
 RUNNING = True
 MENU_STATE = True
 
+
 # INITIALIZES WINDOW ___________________________________________________
-window = Window(GAME_WIDTH, GAME_HEIGHT)
+window = Window(GAME_WIDTH, GAME_HEIGHT, True)
 pygame.display.set_icon(pygame.image.load('Images/icon.png'))
+
+keyboard = window.get_keyboard()

@@ -32,6 +32,7 @@ class GameImage(gameobject.GameObject):
 
         # Loads image from the source, converts to fast-blitting format
         self.image = pygame.image.load(image_file).convert_alpha()
+
         # Gets the image pygame.Rect
         self.rect = self.image.get_rect()
 
@@ -39,6 +40,9 @@ class GameImage(gameobject.GameObject):
         self.width = self.rect.width
         self.height = self.rect.height
 
+
+    def resize(self, w, h):
+        self.image = pygame.transform.scale(self.image, (w, h))
 
 
 
