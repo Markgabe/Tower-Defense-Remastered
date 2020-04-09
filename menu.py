@@ -1,6 +1,6 @@
 from PPlay.gameimage import GameImage
 from Components.Button import *
-from config import *
+from config import GAME_WIDTH, GAME_HEIGHT
 
 #-------------MENU--------------#
 class MenuGame:
@@ -14,13 +14,20 @@ class MenuGame:
         self.draw(window)
         self.update(window, gs)
         window.set_title("Menu")
-        window.update()
 
     def draw(self, window):
         self.bgmenu.draw()
-        self.buttonPlay.draw(window)
-        self.buttonOptions.draw(window)
-        self.buttonExit.draw(window)
+        for button in self.buttons:
+            button.draw(window)
+        window.update()
+
+    def update(self, run, menu, options):
+        if (self.getButtonClicked(2)):
+            run = False
+            menu = False
+        elif (self.getButtonClicked(1)):
+            menu = False
+            options = True
 
     def update(self, window, gs):
         if self.buttonExit.clicked():

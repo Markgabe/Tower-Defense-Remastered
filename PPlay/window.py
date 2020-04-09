@@ -15,7 +15,10 @@ class Window():
     screen = None
 
     """Initialize a Window (width x height)"""
-    def __init__(self, width, height):
+    def __init__(self, width, height, fullscreen = False):
+        # Info
+        self.infoObject = pygame.display.Info()
+
         # Input controllers
         Window.keyboard = keyboard.Keyboard()
         Window.mouse = mouse.Mouse()
@@ -23,6 +26,7 @@ class Window():
         # Size
         self.width = width
         self.height = height
+        self.fullscreen = fullscreen
 
         # Pattern color
         self.color = [0,0,0]  # Black
@@ -38,7 +42,13 @@ class Window():
         # Creates the screen (pygame.Surface)
         # There are some useful flags (look pygame's docs)
         # It's like a static attribute in Java
-        Window.screen = pygame.display.set_mode([self.width, self.height])
+        if (self.fullscreen):
+            Window.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+            self.width = self.infoObject.current_w
+            self.height = self.infoObject.current_h
+        else:
+            Window.screen = pygame.display.set_mode([self.width, self.height])
+
         # ? Why is it possible to do w.screen?
 
         # Sets pattern starting conditions
@@ -53,7 +63,11 @@ class Window():
     """Not implemented yet - Sets the Window to Fullscreen"""
     # Unfortunately, it must save the old screen (buffer) and
     # blit (transfer, see pygame doc) to the new FSCREEN
-    def set_fullscreen(self): pass
+    def set_fullscreen(self):
+        Window.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.width = self.infoObject.current_w
+        self.height = self.infoObject.current_h
+        pygame.display.update()
     # TODO
 
     """Not implemented yet - Disable the full display mode"""
@@ -63,8 +77,11 @@ class Window():
 
     """Not implemented yet - Sets the Window resolution"""
     # The same problem as fullscreen
-    def set_resolution(self, width, height): pass
+    def set_resolution(self, width, height):
+        Window.screen = pygame.display.set_mode([width, height])
+        pygame.display.update()
     # TODO
+
 
 #-----------------------CONTROL METHODS---------------------------
     """Refreshes the Window - makes changes visible, AND updates the Time"""

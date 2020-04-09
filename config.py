@@ -20,3 +20,6 @@ class Config:
     # INITIALIZES WINDOW ___________________________________________________
     window = Window(GAME_WIDTH, GAME_HEIGHT)
     pygame.display.set_icon(pygame.image.load('Images/icon.png'))
+
+    # INSTANTIATES KEYBOARD ________________________________________________
+    keyboard = window.get_keyboard()
