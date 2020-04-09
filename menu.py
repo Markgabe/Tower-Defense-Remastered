@@ -6,13 +6,13 @@ from config import *
 class MenuGame:
     def __init__(self):
         self.bgmenu = GameImage("Images/bgmenutd.png")
-        self.buttonPlay = TextButton("Play", (200,200,200), GAME_WIDTH/2, 400, True, False)
-        self.buttonOptions = TextButton("Options", (200,200,200), GAME_WIDTH/2, 440, True, False)
-        self.buttonExit = TextButton("Exit", (200,200,200), GAME_WIDTH/2, 480, True, False)
+        self.buttonPlay = TextButton("Play", (200,200,200), Config.GAME_WIDTH/2, 400, True, False)
+        self.buttonOptions = TextButton("Options", (200,200,200), Config.GAME_WIDTH/2, 440, True, False)
+        self.buttonExit = TextButton("Exit", (200,200,200), Config.GAME_WIDTH/2, 480, True, False)
 
-    def start(self, window):
+    def start(self, window, gs):
         self.draw(window)
-        self.update(window)
+        self.update(window, gs)
         window.set_title("Menu")
         window.update()
 
@@ -22,11 +22,11 @@ class MenuGame:
         self.buttonOptions.draw(window)
         self.buttonExit.draw(window)
 
-    def update(self, window):
+    def update(self, window, gs):
         if self.buttonExit.clicked():
-            RUNNING = False
+            gs.exit_game()
             window.update()
 
         if self.buttonOptions.clicked():
-            OPTIONS_STATE = True
+            gs.enter_options()
             window.update()
